@@ -139,7 +139,11 @@
     
     _imageView = [[UIImageView alloc] initWithImage:[self maskedImageWithImage:image]];
     _imageView.frame = CGRectMake((int)(frame.size.width/2)-(_imageView.frame.size.width/2), (int)(frame.size.height/2)-(_imageView.frame.size.height/2), _imageView.image.size.width, _imageView.image.size.height);
-
+    
+    
+	self.maskGradientColors = [NSArray arrayWithObjects:
+                       [UIColor colorWithRed:174/255.0 green:182/255.0 blue:195/255.0 alpha:1],
+                       [UIColor colorWithRed:197/255.0 green:202/255.0 blue:211/255.0 alpha:1],nil];
     
     [self addSubview:_imageView];
     [self addSubview:_subtitleLabel];
@@ -186,11 +190,8 @@
 
 	UIGraphicsBeginImageContext(CGSizeMake((m.size.width)*m.scale , (m.size.height+2)*m.scale));
 	CGContextRef context = UIGraphicsGetCurrentContext();
-
-	NSArray *colors = [NSArray arrayWithObjects:
-				   [UIColor colorWithRed:174/255.0 green:182/255.0 blue:195/255.0 alpha:1],
-				   [UIColor colorWithRed:197/255.0 green:202/255.0 blue:211/255.0 alpha:1],nil];
 	
+    NSArray* colors = self.maskGradientColors;
 
 	CGContextSetShadowWithColor(context, CGSizeMake(1, 4),4, [UIColor colorWithWhite:0 alpha:0.1].CGColor);
 	[m drawInRect:CGRectMake(0, 0+(1*m.scale),m.size.width*m.scale, m.size.height*m.scale)];

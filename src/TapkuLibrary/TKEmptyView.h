@@ -106,6 +106,8 @@ typedef enum {
 /** The secondary message. */
 @property (strong,nonatomic) UILabel *subtitleLabel;
 
+@property (nonatomic,strong) NSArray* maskGradientColors;
+
 
 
 ///-------------------------
